@@ -1,5 +1,5 @@
 [package]
-name = "dependency_db"
+name = "id"
 version = "0.1.0"
 edition = "2021"
 

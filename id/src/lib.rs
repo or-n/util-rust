@@ -104,11 +104,18 @@ mod tests {
                 deps: vec![],
             })
             .unwrap();
-
+        println!("{:?}", id);
+        let id2 = a
+            .push(DepValue {
+                bytes: vec![],
+                deps: vec![id],
+            })
+            .unwrap();
+        println!("{:?}", id2);
         std::fs::write("test/b_db", []).unwrap();
         std::fs::write("test/b_top", []).unwrap();
         let mut b: DB<Id> = DB::load("test/b_db", "test/b_top").unwrap();
-        b.migrate(&a, id).unwrap();
-        assert!(b.db.contains_key(&id));
+        b.migrate(&a, id2).unwrap();
+        assert!(b.db.contains_key(&id2));
     }
 }

@@ -10,7 +10,7 @@ members = [
     "gen",
     "ecs",
     "range",
-    "dependency_db",
+    "id",
     "eat",
     "spit",
 ]
