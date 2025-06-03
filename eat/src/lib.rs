@@ -138,3 +138,18 @@ where
         Ok((i, (a, b)))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_f32() {
+        let input = "21.37";
+        let result = f32::eat(input, ());
+        assert!(result.is_ok());
+        let (rest, value) = result.unwrap();
+        assert!(rest.is_empty());
+        assert_eq!(value, 21.37);
+    }
+}
