@@ -152,4 +152,14 @@ mod tests {
         assert!(rest.is_empty());
         assert_eq!(value, 21.37);
     }
+
+    #[test]
+    fn test_f32_no_decimal_point() {
+        let input = "+1";
+        let result = f32::eat(input, ());
+        assert!(result.is_ok());
+        let (rest, value) = result.unwrap();
+        assert!(rest.is_empty());
+        assert_eq!(value, 1.);
+    }
 }

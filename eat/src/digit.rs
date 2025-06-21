@@ -61,12 +61,16 @@ impl Eat<&str, (), ()> for Float {
             .iter()
             .map(|d| std::char::from_digit(d.0, 10).unwrap())
             .collect();
-        let i = '.'.drop(i)?;
-        let (i, digits) = Digit::eat_many(i, ());
-        let after: String = digits
-            .iter()
-            .map(|d| std::char::from_digit(d.0, 10).unwrap())
-            .collect();
+        let (i, after) = if let Ok(i) = '.'.drop(i) {
+            let (i, digits) = Digit::eat_many(i, ());
+            let after: String = digits
+                .iter()
+                .map(|d| std::char::from_digit(d.0, 10).unwrap())
+                .collect();
+            (i, after)
+        } else {
+            (i, "0".to_string())
+        };
         let f = format!("{}{}.{}", sign.0, before, after);
         Ok((i, Float(f)))
     }
